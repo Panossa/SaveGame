@@ -29,7 +29,7 @@ copy /y *.sav "../satissaves"
 cd "../satissaves"
 ::Push data
 git add *.sav
-git commit -m %msg%
+git commit -m "%msg%"
 git push
 echo Save game uploaded!
 PAUSE
