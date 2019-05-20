@@ -4,9 +4,12 @@ git pull
 ::Copy all of the save data into the right folder
 copy /y *.sav "../SaveGames"
 
-::Start Satis, wait for end
+::Grab Satis Path
+set /p satispath=<path.txt
+::Timestamp for the start
 set start=%date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
-start "" "S:\Programme\Paragon\SatisfactoryEarlyAccess\FactoryGame\Binaries\Win64\FactoryGame-Win64-Shipping.exe"
+::Start Satis, wait for end
+start "" %satispath%
 echo Waiting for game to close...
 
 :LOOP
