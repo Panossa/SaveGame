@@ -1,6 +1,8 @@
 @echo off
 ::Pull data
 git pull
+::Copy all of the save data into the right folder
+copy *.sav "../SaveGames"
 
 ::Start Satis, wait for end
 set start=%date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
@@ -20,10 +22,14 @@ IF ERRORLEVEL 1 (
 )
 
 :CONTINUE
+::copy new save file(s)
+set msg=%start% till %date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
+cd "../SaveGames"
+copy *.sav "../satissaves"
+cd "../satissaves"
 ::Push data
 git add *.sav
-set msg = %start% till %date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
-git commit -m %date%
+git commit -m %msg%
 git push
 echo Save game uploaded!
 PAUSE
