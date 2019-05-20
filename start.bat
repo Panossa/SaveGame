@@ -1,10 +1,10 @@
 @echo off
 ::Pull data
-git init
-git clone https://github.com/bsavage81/blockbench-plugins.git
+git pull
 
 ::Start Satis, wait for end
-START "" "S:\Programme\Paragon\SatisfactoryEarlyAccess\FactoryGame\Binaries\Win64\FactoryGame-Win64-Shipping.exe"
+set start=%date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
+start "" "S:\Programme\Paragon\SatisfactoryEarlyAccess\FactoryGame\Binaries\Win64\FactoryGame-Win64-Shipping.exe"
 echo Waiting for game to close...
 
 :LOOP
@@ -21,9 +21,9 @@ IF ERRORLEVEL 1 (
 
 :CONTINUE
 ::Push data
-del /f /q /s blockbench-plugins
-del /f /q /s .git
-git init
-git clone https://github.com/bsavage81/blockbench-plugins.git
+git add *.sav
+set msg = %start% till %date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
+git commit -m %date%
+git push
 echo Save game uploaded!
 PAUSE
