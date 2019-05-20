@@ -20,7 +20,7 @@ IF ERRORLEVEL 1 (
   GOTO CONTINUE
 ) ELSE (
   :: still running
-  TIMEOUT /T 5 /Nobreak >nul
+  TIMEOUT /T 10 /Nobreak >nul
   GOTO LOOP
 )
 
