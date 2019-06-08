@@ -5,11 +5,10 @@ git pull
 copy /y *.sav "../SaveGames"
 
 ::Grab Satis Path
-set /p satispath=<path.txt
 ::Timestamp for the start
 set start=%date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
 ::Start Satis, wait for end
-start "" %satispath%
+start "" com.epicgames.launcher://apps/CrabEA?action=launch
 echo Waiting for game to close...
 
 :LOOP
