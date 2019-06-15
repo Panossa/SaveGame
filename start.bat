@@ -5,10 +5,20 @@ git pull
 copy /y *.sav "../SaveGames"
 
 ::Grab Satis Path
+set /P satispath=Which version? Normal(n) or experimental(e)? 
+IF %satispath% == n (
+	set satispath="com.epicgames.launcher://apps/CrabEA?action=launch"
+) ELSE (
+	IF %satispath% == e (
+		set satispath="com.epicgames.launcher://apps/CrabTest?action=launch"
+	) ELSE (
+		echo WTF, just put in "n" or "e".
+	)
+)
 ::Timestamp for the start
 set start=%date:~0,2%-%date:~3,2%-%date:~8,2%@%time:~0,5%
 ::Start Satis, wait for end
-start "" com.epicgames.launcher://apps/CrabEA?action=launch
+start "" %satispath%
 echo Waiting for the game to start (10 seconds)
 TIMEOUT /T 10 /Nobreak >nul
 echo Waiting for game to close...
